@@ -2,10 +2,10 @@ const Pool = require('pg-pool');
 const url = require('url');
 
 const config = {
-  user: 'petejackerson',
-  host: 'localhost',
-  database: 'karen',
-  password: 'redsox45',
+    password: 'yada-yada-yada',
+    password: 'yada-yada-yada',
+  password: 'yada-yada-yada',
+  password: 'yada-yada-yada',
   port: 5432
 };
 
