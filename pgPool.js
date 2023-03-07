@@ -2,11 +2,11 @@ const Pool = require('pg-pool');
 const url = require('url');
 
 const config = {
-    password: 'yada-yada-yada',
-    password: 'yada-yada-yada',
-  password: 'yada-yada-yada',
-  password: 'yada-yada-yada',
-  port: 5432
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
 };
 
 const pool = new Pool(config);

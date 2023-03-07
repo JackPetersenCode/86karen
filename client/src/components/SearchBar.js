@@ -53,7 +53,7 @@ const SearchBar = () => {
             onChange={inputHandler}
             variant="outlined"
             label="Search"
-            style={{backgroundColor: 'pink'}}
+            style={{backgroundColor: 'white', borderRadius: '5px'}}
             value={inputText}
             InputProps={{
                 endAdornment: <InputAdornment position="start"><SearchIcon onClick={() => onSearch(inputText)} /></InputAdornment>,

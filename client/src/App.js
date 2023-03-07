@@ -7,6 +7,8 @@ import HomeServices from './pages/homeServices';
 import AutoServices from './pages/autoServices';
 import More from './pages/more';
 import Layout from './pages/Layout';
+import styled from 'styled-components';
+
 
 function App() {
   return (
