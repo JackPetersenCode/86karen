@@ -7,10 +7,10 @@ import HomeServices from './pages/homeServices';
 import AutoServices from './pages/autoServices';
 import More from './pages/more';
 import Layout from './pages/Layout';
-import styled from 'styled-components';
-
+import SearchResults from './pages/searchResults';
 
 function App() {
+  
   return (
       <BrowserRouter>
         <Routes>
@@ -20,7 +20,7 @@ function App() {
             <Route path="HomeServices" element={<HomeServices />} />
             <Route path="AutoServices" element={<AutoServices />} />
             <Route path="More" element={<More />} />
-
+            <Route path=":input" element={<SearchResults />} />
           </Route>
         </Routes>
       </BrowserRouter>

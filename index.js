@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 var app = express();
 
 if (process.env.NODE_ENV === "production") {
-
+    console.log('production?')
     // Set static folder
     // All the javascript and css files will be read and served from this folder
     app.use(express.static("client/build"));
@@ -20,7 +20,8 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, "./client", "build", "index.html"));
     });
 } else {
-    app.use(express.static('public'));
+    app.use(express.static('/public'));
+    
 }
 
 app.set('view engine', 'ejs');
@@ -42,6 +43,10 @@ app.use(cookieParser());
 
 const apiRouter = require('./routes/apiRoutes.js');
 app.use('/api', apiRouter);
+
+const restaurantRouter = require('./routes/restaurantRoutes.js');
+apiRouter.use('/restaurants', restaurantRouter);
+
 
 app.listen(port, async() => {
   //await sequelize.authenticate();

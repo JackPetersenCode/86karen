@@ -6,6 +6,8 @@ import SearchList from "./SearchList";
 import axios from 'axios';
 import "../App.css";
 import styled from 'styled-components';
+import { Link, useNavigate } from "react-router-dom";
+
 
 const ContainerDiv = styled.div`
     position: relative;
@@ -21,13 +23,13 @@ const SearchBar = () => {
     const [allBusinesses, setAllBusinesses] = useState([]);
 
     useEffect(() => {
-        const getRestaurants = async() => {
+        const getAll = async() => {
             let results = await axios.get(`/api/searchAll`);
             console.log(results.data)
 
             setAllBusinesses(results.data);
         }
-        getRestaurants()
+        getAll()
     }, [])
 
     let inputHandler = (e) => {
@@ -40,9 +42,10 @@ const SearchBar = () => {
 
     const onSearch = (name) => {
         setInputText(name);
-        console.log(`heres the thing you searched for: ${name}`)
-    }
+        console.log(`heres the thing you searched for: ${name}`);
 
+
+    }
 
     return (
       <ContainerDiv>
@@ -56,7 +59,7 @@ const SearchBar = () => {
             style={{backgroundColor: 'white', borderRadius: '5px'}}
             value={inputText}
             InputProps={{
-                endAdornment: <InputAdornment position="start"><SearchIcon onClick={() => onSearch(inputText)} /></InputAdornment>,
+                endAdornment: <InputAdornment position="start"><Link to={`/${inputText}`}><SearchIcon /></Link></InputAdornment>,
             }}
           />
         </TextDiv>

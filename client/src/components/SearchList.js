@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const DropdownStyle = styled.div`
     background-color: white;
@@ -29,7 +30,7 @@ function SearchList({ inputText, setInputText, data, onSearch }) {
     return (
       <DropdownStyle>
           {filteredData.map((item, index) => (
-              <DropdownRowStyle onClick={() => onSearch(item.name)} key={index}>{item.name}</DropdownRowStyle>
+            <Link key={index} to={`/${item.name}`}><DropdownRowStyle>{item.name}</DropdownRowStyle></Link>
           ))}
       </DropdownStyle>
     )

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import './App.css';
-import SearchBar from "./components/SearchBar";
+import '../App.css';
+import SearchBar from "../components/SearchBar";
 import styled from 'styled-components';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
@@ -18,6 +18,7 @@ const LowerNavContainer = styled.nav`
     display: grid;
     grid-template-columns: minmax(175px, 1fr) repeat(8, 1fr);
     grid-template-rows: auto;
+    color: white;
 `
 
 const TopNavLinks = styled.div`
@@ -41,6 +42,8 @@ const DropDownContent = styled.div`
     flex-direction: column;
     padding: 10px;
     min-width: 150px;
+    text-decoration: none;
+    color: black;
   `
 
   const GridLink = styled.div`
@@ -147,7 +150,7 @@ function Navbar() {
       <NavContainer>
         <LogoNavLink>
           <a href="/">
-              <div id="headtag"><img src="karen3.png" alt="Home"/></div>
+              <div id="headtag"><img src="kudos.png" alt="Home"/></div>
           </a>
         </LogoNavLink>
         <div style={{display: 'grid'}}>
@@ -172,11 +175,11 @@ function Navbar() {
           <DropDownContent>
             <DropDownGrid>
               <StyledBurger />
-              <Link to="/Restaurants/Burgers" className="Link" >Burgers</Link>
+              <Link to="/Restaurants/Burgers" className="dropLink" >Burgers</Link>
             </DropDownGrid>
             <DropDownGrid>
               <StyledBurger />
-              <Link to="/Restaurants/Burgers" className="Link" >Burgers</Link>
+              <Link to="/Restaurants/Burgers" className="dropLink" >Burgers</Link>
             </DropDownGrid>
           </DropDownContent>
         </FirstNavLink>
