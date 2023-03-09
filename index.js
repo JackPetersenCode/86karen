@@ -45,8 +45,10 @@ const apiRouter = require('./routes/apiRoutes.js');
 app.use('/api', apiRouter);
 
 const restaurantRouter = require('./routes/restaurantRoutes.js');
-apiRouter.use('/restaurants', restaurantRouter);
+const reviewsRouter = require('./routes/reviewsRoutes.js');
 
+apiRouter.use('/restaurants', restaurantRouter);
+apiRouter.use('/reviews', reviewsRouter);
 
 app.listen(port, async() => {
   //await sequelize.authenticate();

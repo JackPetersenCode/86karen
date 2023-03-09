@@ -5,7 +5,13 @@ import SearchBar from "../components/SearchBar";
 import styled from 'styled-components';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
-
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
+import PlumbingIcon from '@mui/icons-material/Plumbing';
+import YardIcon from '@mui/icons-material/Yard';
+import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
+import MinorCrashIcon from '@mui/icons-material/MinorCrash';
+import PianoIcon from '@mui/icons-material/Piano';
+import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
 
 const NavContainer = styled.nav`
     display: grid;
@@ -141,8 +147,35 @@ const StyledBurger = styled(LunchDiningIcon)({
   paddingRight: '10px'
 })
 
+const StyledPizza = styled(LocalPizzaIcon)({
+  paddingRight: '10px'
+})
 
+const StyledPlumber = styled(PlumbingIcon)({
+  paddingRight: '10px'
+})
 
+const StyledLandscaper = styled(YardIcon)({
+  paddingRight: '10px'
+})
+
+const StyledBike = styled(TwoWheelerIcon)({
+  paddingRight: '10px'
+})
+
+const StyledMechanic = styled(MinorCrashIcon)({
+  paddingRight: '10px'
+})
+
+const StyledMusic = styled(PianoIcon)({
+  paddingRight: '10px'
+})
+
+const StyledDance = styled(SportsGymnasticsIcon)({
+  paddingRight: '10px'
+})
+
+let restaurantLink = 'rest';
 function Navbar() {
 
     return (
@@ -169,17 +202,17 @@ function Navbar() {
       <LowerNavContainer>
         <FirstNavLink>
           <GridLink>
-            <Link to="/Restaurants" className="Link" >Restaurants</Link>
+            <Link to={`/${restaurantLink}`} className="Link" >Restaurants</Link>
             <ExpandMoreIcon />
           </GridLink>
           <DropDownContent>
             <DropDownGrid>
               <StyledBurger />
-              <Link to="/Restaurants/Burgers" className="dropLink" >Burgers</Link>
+              <Link to="/burger" className="dropLink" >Burgers</Link>
             </DropDownGrid>
             <DropDownGrid>
-              <StyledBurger />
-              <Link to="/Restaurants/Burgers" className="dropLink" >Burgers</Link>
+              <StyledPizza />
+              <Link to="/pizza" className="dropLink" >Pizza</Link>
             </DropDownGrid>
           </DropDownContent>
         </FirstNavLink>
@@ -188,21 +221,48 @@ function Navbar() {
             <Link to="/HomeServices" className="Link" >Home&nbsp;Services</Link>
             <ExpandMoreIcon />
           </GridLink>
-          <DropDownContent>Karen</DropDownContent>
+          <DropDownContent>
+            <DropDownGrid>
+              <StyledPlumber />
+              <Link to="/plumber" className="dropLink" >Plumbers</Link>
+            </DropDownGrid>
+            <DropDownGrid>
+              <StyledLandscaper />
+              <Link to="/landscaper" className="dropLink" >Landscapers</Link>
+            </DropDownGrid>
+          </DropDownContent>
         </SecondNavLink>
         <ThirdNavLink>
           <GridLink>
             <Link to="/AutoServices" className="Link" >Auto&nbsp;Services</Link>
             <ExpandMoreIcon />
           </GridLink>
-          <DropDownContent>Karen</DropDownContent>
+          <DropDownContent>
+            <DropDownGrid>
+              <StyledBike />
+              <Link to="/bike" className="dropLink" >Bikes</Link>
+            </DropDownGrid>
+            <DropDownGrid>
+              <StyledMechanic />
+              <Link to="/mechanic" className="dropLink" >Mechanics</Link>
+            </DropDownGrid>
+          </DropDownContent>
         </ThirdNavLink>
         <FourthNavLink>
           <GridLink>
             <Link to="/More" className="Link" >More</Link>
             <ExpandMoreIcon />
           </GridLink>
-          <DropDownContent>Karen</DropDownContent>
+          <DropDownContent>
+            <DropDownGrid>
+              <StyledMusic />
+              <Link to="/music" className="dropLink" >Music Lessons</Link>
+            </DropDownGrid>
+            <DropDownGrid>
+              <StyledDance />
+              <Link to="/dance" className="dropLink" >Dance Lessons</Link>
+            </DropDownGrid>
+          </DropDownContent>
         </FourthNavLink>
       </LowerNavContainer>
 

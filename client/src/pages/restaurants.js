@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const RestaurantBackground = styled.div`
-background-image: linear-gradient(180deg, black, white);
+    background-image: linear-gradient(180deg, black, white);
 `
 
 const Restaurants = () => {

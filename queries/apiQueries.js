@@ -2,7 +2,9 @@ const db = require("../pgPool");
 
 const getAll = (request, response, next) => {
     db.query(`SELECT * FROM "restaurants"
-                UNION SELECT * FROM "homeServices"`, (error, results) => {
+                UNION SELECT * FROM "homeServices"
+                UNION SELECT * FROM "autoServices"
+                UNION SELECT * FROM "more"`, (error, results) => {
         if (error) {
             console.log(error);
         }
