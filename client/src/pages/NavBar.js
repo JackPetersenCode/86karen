@@ -42,7 +42,7 @@ const DropDownContent = styled.div`
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    z-index: 1;
+    z-index: 15;
     min-width: 15%;
     border-radius: 5px;
     flex-direction: column;
@@ -175,16 +175,16 @@ const StyledDance = styled(SportsGymnasticsIcon)({
   paddingRight: '10px'
 })
 
-let restaurantLink = 'rest';
+let restaurantLink = 'restaurant';
 function Navbar() {
 
     return (
     <div>
       <NavContainer>
         <LogoNavLink>
-          <a href="/">
-              <div id="headtag"><img src="kudos.png" alt="Home"/></div>
-          </a>
+          <Link to='/'>
+              <div id="headtag"><img src="/kudos.png" alt="Home"/></div>
+          </Link>
         </LogoNavLink>
         <div style={{display: 'grid'}}>
           <SearchBar />
@@ -218,7 +218,7 @@ function Navbar() {
         </FirstNavLink>
         <SecondNavLink>
           <GridLink>
-            <Link to="/HomeServices" className="Link" >Home&nbsp;Services</Link>
+            <Link to="/home" className="Link" >Home&nbsp;Services</Link>
             <ExpandMoreIcon />
           </GridLink>
           <DropDownContent>
@@ -234,7 +234,7 @@ function Navbar() {
         </SecondNavLink>
         <ThirdNavLink>
           <GridLink>
-            <Link to="/AutoServices" className="Link" >Auto&nbsp;Services</Link>
+            <Link to="/auto" className="Link" >Auto&nbsp;Services</Link>
             <ExpandMoreIcon />
           </GridLink>
           <DropDownContent>
@@ -250,7 +250,7 @@ function Navbar() {
         </ThirdNavLink>
         <FourthNavLink>
           <GridLink>
-            <Link to="/More" className="Link" >More</Link>
+            <Link to="/more" className="Link" >More</Link>
             <ExpandMoreIcon />
           </GridLink>
           <DropDownContent>

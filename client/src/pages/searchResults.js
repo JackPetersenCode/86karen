@@ -13,6 +13,7 @@ const TextContainerDiv = styled.div`
 
 const ReviewsDiv = styled.div`
     font-size: medium;
+    max-width: 300px;
 `
 
 const NameDiv = styled.div`
@@ -96,44 +97,32 @@ const SearchResults = () => {
 
     useEffect(() => {
         const getAll = async() => {
-            let results = await axios.get(`/api/searchAll`);
+            let results = await axios.get(`/api/getAllLike/${input.toLowerCase()}`);
             console.log(results.data)
 
             setData(results.data);
         }
-        const getAllRestaurants = async() => {
-            let results = await axios.get(`/api/restaurants/getAll`);
-            console.log(results.data)
-
-            setData(results.data);
-        }
-        if (input === 'rest') {
-            getAllRestaurants()
-        } else {
-            getAll()
-        }
+        getAll();
     }, [input])
 
+
+    //get distinct name where tag like input,
+/*
     const filteredData = data.filter((element) => {
-        if (input === 'rest') {
-            return element;
-        } else {
         //if no input the return the original
-        //return the item which contains the user input
-            return element.name.toLowerCase().includes(input.toLowerCase());
-        }
+        return element.name.toLowerCase().includes(input.toLowerCase())
     })
 
-
-
-
+    console.log(data)
+    console.log(filteredData)
+*/
     return (
         <SearchResultsBackground>
             <Navbar />
             <ResultsHeader>{`All "${input}" results`}</ResultsHeader>
-            {filteredData.map((element, index) => (
+            {data.map((element, index) => (
                 <SearchResultsDiv key={index}>
-                    <SearchResultsImage src={element.image}/>
+                    <SearchResultsImage src={element.images[0]}/>
                     <TextContainerDiv>
                         <NameDiv>
                             {element.name}
@@ -149,7 +138,7 @@ const SearchResults = () => {
                         <ReviewsDiv>
                             <Reviews name={element.name} />
                         </ReviewsDiv>
-                        <Link to={`/${element.name}`}>More</Link>
+                        <Link to={`/Businesses/${element.name}`}>More</Link>
                     </TextContainerDiv>
 
                 </SearchResultsDiv>

@@ -1,10 +1,7 @@
 const db = require("../pgPool");
 
 const getAll = (request, response, next) => {
-    db.query(`SELECT * FROM "restaurants"
-                UNION SELECT * FROM "homeServices"
-                UNION SELECT * FROM "autoServices"
-                UNION SELECT * FROM "more"`, (error, results) => {
+    db.query(`SELECT * FROM "businesses"`, (error, results) => {
         if (error) {
             console.log(error);
         }
@@ -14,20 +11,33 @@ const getAll = (request, response, next) => {
 
 const getAllLike = (request, response, next) => {
 
-    const { input } = request.params;
-
+    let { input } = request.params;
+    input = input.replace("'", '');
     console.log(input)
-    db.query(`SELECT * FROM restaurants
-                WHERE name LIKE '%${input}%'
-                UNION 
-                SELECT * FROM "homeServices"
-                WHERE name LIKE '%${input}%'
-                UNION
-                SELECT * FROM "autoServices"
-                WHERE name LIKE '%${input}%'
-                UNION 
-                SELECT * FROM "more"
-                WHERE name LIKE '%${input}%'`, (error, results) => {
+    db.query(`SELECT * from "businesses" where '%${input}%' <~~ ANY(tags)`, (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+const getIndividualBusiness = (request, response, next) => {
+    const { name } = request.params;
+    db.query(`SELECT * FROM "businesses"
+                WHERE name = $1`, [name], (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+const getBusinessImages = (request, response, next) => {
+    const { name } = request.params;
+    console.log(name)
+    db.query(`SELECT images FROM "businesses"
+                WHERE name = $1`, [name], (error, results) => {
         if (error) {
             console.log(error);
         }
@@ -38,4 +48,6 @@ const getAllLike = (request, response, next) => {
 module.exports = {
     getAll,
     getAllLike,
+    getIndividualBusiness,
+    getBusinessImages,
 }

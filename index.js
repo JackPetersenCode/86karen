@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, "./client", "build", "index.html"));
     });
 } else {
+    console.log('here')
     app.use(express.static('/public'));
     
 }

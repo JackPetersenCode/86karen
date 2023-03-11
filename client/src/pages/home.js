@@ -9,6 +9,7 @@ import 'react-slideshow-image/dist/styles.css'
 import '../App.css'
 import FadeButton from "../components/FadeButton";
 
+
 const images = [
     {url: image1, text: 'Make those neighbors jealous', name: 'Landscapers'},
     {url: image2, text: "Get a good scrubbin'", name: 'Cleaners'},
@@ -26,8 +27,11 @@ const TextDiv = styled.div`
     text-shadow: 0 0 0.2em #87F, 0 0 0.2em black,
         0 0 0.2em black; 
 `
-
+console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+console.log(process.env.DB_HOST)
+console.log(process.env.NODE_ENV)
 const Home = () => {
+    
     return (
       <div>
         <Fade autoplay infinite duration={5000}>

@@ -8,6 +8,7 @@ import AutoServices from './pages/autoServices';
 import More from './pages/more';
 import Layout from './pages/Layout';
 import SearchResults from './pages/searchResults';
+import Businesses from './pages/businesses';
 
 function App() {
   
@@ -16,10 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="Restaurants" element={<Restaurants />} />
-            <Route path="HomeServices" element={<HomeServices />} />
-            <Route path="AutoServices" element={<AutoServices />} />
-            <Route path="More" element={<More />} />
+            <Route path="Businesses/:name" element={<Businesses />} />
             <Route path=":input" element={<SearchResults />} />
           </Route>
         </Routes>
