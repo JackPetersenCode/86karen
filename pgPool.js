@@ -1,5 +1,7 @@
 const Pool = require('pg-pool');
 const url = require('url');
+require('dotenv').config();
+
 
 const config = {
   user: process.env.DB_USER,

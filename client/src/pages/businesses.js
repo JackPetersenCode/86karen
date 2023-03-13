@@ -24,6 +24,8 @@ const ImageDiv = styled.div`
     grid-template-rows: 300px;
     max-width: fit-content;
     position: absolute;
+    box-shadow: 0 0 20px rgba(48, 48, 48), 0 0 20px rgba(48, 48, 48),
+    0 0 20px rgba(48, 48, 48);
 
 `
 const BusinessName = styled.div`
@@ -36,8 +38,8 @@ const BusinessName = styled.div`
 `
 const BusinessDescription = styled.div`
     margin-top: 300px;
-    box-shadow: 0 0 10px black, 0 0 10px black,
-    0 0 10px black;
+    box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
+    0 0 10px rgba(48, 48, 48);
     max-width: fit-content;
     border-radius: 5px;
     background-color: white;
@@ -101,8 +103,8 @@ const BelowMapDiv = styled.div`
 const ReviewsWrapper = styled.div`
     background-color: white;
     max-width: fit-content;
-    box-shadow: 0 0 10px black, 0 0 10px black,
-    0 0 10px black;
+    box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
+    0 0 10px rgba(48, 48, 48);
     border-radius: 5px;
     margin-top: 20px;
     min-width: 300px;
@@ -163,7 +165,7 @@ const Businesses = () => {
                 <BottomPageWrapper>
                     <BusinessDescription>
                         <FromTheBusiness>About the Business</FromTheBusiness>
-                        <Description>here's the description</Description>
+                        <Description>Here's where the business owner can input a lengthy description</Description>
                     </BusinessDescription>
                     <ReviewsWrapper>
                         <FromTheBusiness>Review Highlights</FromTheBusiness>
@@ -173,6 +175,7 @@ const Businesses = () => {
                 <MapWrap>
                     <GoogleMap address={business.address} />
                     <BelowMapDiv>
+                        <h3>Business address:</h3>
                         {business.address}
                     </BelowMapDiv>
                 </MapWrap>

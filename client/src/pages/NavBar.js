@@ -12,6 +12,7 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import MinorCrashIcon from '@mui/icons-material/MinorCrash';
 import PianoIcon from '@mui/icons-material/Piano';
 import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NavContainer = styled.nav`
     display: grid;
@@ -30,7 +31,7 @@ const LowerNavContainer = styled.nav`
 const TopNavLinks = styled.div`
     display: grid;
     text-align: center;
-    padding-top: 30px
+    place-items: center;
 `
 
 const LogoNavLink = styled.div`
@@ -190,13 +191,15 @@ function Navbar() {
           <SearchBar />
         </div>
         <TopNavLinks>
-          <Link to="/Businesses" className="Link" >For Business</Link>
+          <Link to="/AddBusiness" className="Link" >For Business</Link>
         </TopNavLinks>
         <TopNavLinks>
           <Link to="/Reviews"  className="Link" >Write a Review</Link>
         </TopNavLinks>
         <TopNavLinks>
-          profile logo
+          <Link to="/Profile">
+            <AccountCircleIcon style={{color: 'white'}}/>
+          </Link>
         </TopNavLinks>
       </NavContainer>
       <LowerNavContainer>

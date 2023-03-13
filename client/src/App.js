@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './pages/home';
-import Restaurants from './pages/restaurants';
-import HomeServices from './pages/homeServices';
-import AutoServices from './pages/autoServices';
-import More from './pages/more';
 import Layout from './pages/Layout';
 import SearchResults from './pages/searchResults';
 import Businesses from './pages/businesses';
+import AddBusiness from './pages/addbusiness';
+import Profile from './components/Profile';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
   
+  const [profile, setProfile] = useState('');
+
+
   return (
       <BrowserRouter>
         <Routes>
@@ -19,6 +22,11 @@ function App() {
             <Route index element={<Home />} />
             <Route path="Businesses/:name" element={<Businesses />} />
             <Route path=":input" element={<SearchResults />} />
+            <Route path="AddBusiness" element={<AddBusiness />} />
+            <Route path="Profile" element={<Profile profile={profile} setProfile={setProfile} />} />
+            <Route path="Register" element={<Register profile={profile} setProfile={setProfile} />} />
+            <Route path="Login" element={<Login profile={profile} setProfile={setProfile} />} />
+
           </Route>
         </Routes>
       </BrowserRouter>

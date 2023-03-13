@@ -3,6 +3,14 @@ var path = require('path');
 var port = process.env.PORT || 3001;
 var cors = require('cors');
 var cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const initializePassport = require('./config/passport');
+initializePassport(passport);
+
+
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
@@ -21,13 +29,32 @@ if (process.env.NODE_ENV === "production") {
     });
 } else {
     console.log('here')
-    app.use(express.static('/public'));
+    app.use(express.static('public'));
     
 }
+console.log(typeof process.env.DB_PASSWORD)
 
-app.set('view engine', 'ejs');
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}))
+
+app.use(cookieParser('secret'))
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(bodyParser.json());
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+);
+
+app.use(cookieParser());
 
 app.use(cors());
+
 /*app.use(cors({
     origin: ["http://localhost:3001"],
     credentials: true
@@ -40,16 +67,17 @@ app.use(cors());
       },
     })
   );*/
-app.use(cookieParser());
 
 const apiRouter = require('./routes/apiRoutes.js');
 app.use('/api', apiRouter);
 
 const restaurantRouter = require('./routes/restaurantRoutes.js');
 const reviewsRouter = require('./routes/reviewsRoutes.js');
+const userRouter = require('./routes/userRoutes.js');
 
 apiRouter.use('/restaurants', restaurantRouter);
 apiRouter.use('/reviews', reviewsRouter);
+apiRouter.use('/users', userRouter);
 
 app.listen(port, async() => {
   //await sequelize.authenticate();
