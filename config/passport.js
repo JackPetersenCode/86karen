@@ -21,7 +21,7 @@ function initialize(passport) {
                     if(isMatch) {
                         console.log('yo yo yo guy')
                         console.log(user);
-                        let authUser = { id: results.rows[0].id, name: results.rows[0].name };
+                        let authUser = { id: results.rows[0].id, name: results.rows[0].name, email: results.rows[0].email };
                         return done(null, authUser);
                     } else {
                         return done(null, false, { message: "invalid input" })

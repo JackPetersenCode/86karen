@@ -9,11 +9,12 @@ import AddBusiness from './pages/addbusiness';
 import Profile from './components/Profile';
 import Register from './components/Register';
 import Login from './components/Login';
+import ReviewsPage from './pages/ReviewsPage';
 
 function App() {
   
   const [profile, setProfile] = useState('');
-
+  const [images, setImages] = useState([]);
 
   return (
       <BrowserRouter>
@@ -22,11 +23,11 @@ function App() {
             <Route index element={<Home />} />
             <Route path="Businesses/:name" element={<Businesses />} />
             <Route path=":input" element={<SearchResults />} />
-            <Route path="AddBusiness" element={<AddBusiness />} />
+            <Route path="AddBusiness" element={<AddBusiness profile={profile} setProfile={setProfile} />} />
             <Route path="Profile" element={<Profile profile={profile} setProfile={setProfile} />} />
             <Route path="Register" element={<Register profile={profile} setProfile={setProfile} />} />
             <Route path="Login" element={<Login profile={profile} setProfile={setProfile} />} />
-
+            <Route path="ReviewsPage" element={<ReviewsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

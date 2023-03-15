@@ -32,6 +32,7 @@ const TopNavLinks = styled.div`
     display: grid;
     text-align: center;
     place-items: center;
+    max-height: 75px;
 `
 
 const LogoNavLink = styled.div`
@@ -187,14 +188,12 @@ function Navbar() {
               <div id="headtag"><img src="/kudos.png" alt="Home"/></div>
           </Link>
         </LogoNavLink>
-        <div style={{display: 'grid'}}>
           <SearchBar />
-        </div>
         <TopNavLinks>
           <Link to="/AddBusiness" className="Link" >For Business</Link>
         </TopNavLinks>
         <TopNavLinks>
-          <Link to="/Reviews"  className="Link" >Write a Review</Link>
+          <Link to="/ReviewsPage"  className="Link" >Write a Review</Link>
         </TopNavLinks>
         <TopNavLinks>
           <Link to="/Profile">

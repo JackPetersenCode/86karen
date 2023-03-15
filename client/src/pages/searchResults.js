@@ -97,7 +97,8 @@ const SearchResults = () => {
 
     useEffect(() => {
         const getAll = async() => {
-            let results = await axios.get(`/api/getAllLike/${input.toLowerCase()}`);
+            console.log(input)
+            let results = await axios.get(`/api/business/getAllLike/${input.toLowerCase()}`);
             console.log(results.data)
 
             setData(results.data);
@@ -122,7 +123,10 @@ const SearchResults = () => {
             <ResultsHeader>{`All "${input}" results`}</ResultsHeader>
             {data.map((element, index) => (
                 <SearchResultsDiv key={index}>
+                    {element.images ?
                     <SearchResultsImage src={element.images[0]}/>
+                    :
+                    'No Images'}
                     <TextContainerDiv>
                         <NameDiv>
                             {element.name}

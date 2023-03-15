@@ -10,7 +10,7 @@ const KudosRating = ({ name }) => {
 
         const getCount = async() => {
             let results = await axios.get(`/api/reviews/count/${name}`);
-            setCount(results.data[0].array_length);
+            setCount(results.data[0].count);
             console.log(results.data)
         }
         getCount();

@@ -68,16 +68,18 @@ app.use(cors());
     })
   );*/
 
-const apiRouter = require('./routes/apiRoutes.js');
+const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
 const restaurantRouter = require('./routes/restaurantRoutes.js');
 const reviewsRouter = require('./routes/reviewsRoutes.js');
 const userRouter = require('./routes/userRoutes.js');
+const businessRouter = require('./routes/businessRoutes.js');
 
 apiRouter.use('/restaurants', restaurantRouter);
 apiRouter.use('/reviews', reviewsRouter);
 apiRouter.use('/users', userRouter);
+apiRouter.use('/business', businessRouter);
 
 app.listen(port, async() => {
   //await sequelize.authenticate();

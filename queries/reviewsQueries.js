@@ -4,7 +4,7 @@ const getReviews = (request, response, next) => {
 
     const { name } = request.params;
     console.log(request.params)
-    db.query(`SELECT reviews FROM "businesses"
+    db.query(`SELECT * FROM "reviews"
                 WHERE name = $1`, [name], (error, results) => {
         if (error) {
             console.log(error);
@@ -17,7 +17,7 @@ const getCount = (request, response, next) => {
 
     const { name } = request.params;
     console.log(request.params)
-    db.query(`SELECT ARRAY_LENGTH(reviews, 1) FROM "businesses"
+    db.query(`SELECT COUNT(id) FROM "reviews"
                 WHERE name = $1`, [name], (error, results) => {
         if (error) {
             console.log(error);

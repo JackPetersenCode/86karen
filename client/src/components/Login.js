@@ -3,6 +3,49 @@ import axios from "axios";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Navbar from "../pages/NavBar";
+
+const BusinessesBackground = styled.div`
+    background-image: linear-gradient(180deg, black, white);
+    width: 100%;
+`
+const FormDiv = styled.div`
+    text-align: center;
+    margin: 20px;
+`
+const Flower = styled.img`
+    width: 75px;
+    height: 75px;
+`
+const StyledInput = styled.input`
+    width: 400px;
+    padding: 15px;
+    font-size: large;
+    border-radius: 10px;
+    border-width: 5px;
+`
+const StyledButton = styled.button`
+    width: 440px;
+    padding: 15px;
+    font-size: large;
+    border-radius: 10px;
+    border-width: 5px;
+    color: white;
+    border-color: rgb(48, 48, 48);
+    background-color: rgb(48, 48, 48);
+`
+const StyledButtonRegister = styled.button`
+    width: 440px;
+    padding: 15px;
+    font-size: large;
+    border-radius: 10px;
+    color: white;
+    border-width: 5px;
+    border-color: rgb(48, 48, 48);
+    background-color: rgb(48, 48, 48);
+
+`
 
 const Login = ({ profile, setProfile }) => {
 
@@ -25,32 +68,37 @@ const Login = ({ profile, setProfile }) => {
         } else {
             console.log('yayaya');
             //setLoginStatus(true);
-            setProfile(results.data.name)
+            setProfile(results.data)
             navigate('/');
         }                                                        
     }
 
     return (
-        <>
-        <div>
-            <label htmlFor="email">email</label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)}
-                    type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-            <br></br>
-            <label htmlFor="password">password</label>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-            <br></br>
-
-            <button onClick={login}>Log in</button>        
-        </div>
-        <Link to="/Register">
-            <button>Don't have an account? Register here.</button>
-        </Link>
-        <div>{messages.map((message, index) => (
-                <div key={index}>{message.message}</div>
-            ))}
-        </div>
-        </>
+        <BusinessesBackground>
+            <Navbar />
+            <FormDiv>
+                <Flower src="/flower2.png" />
+            </FormDiv>
+            <FormDiv>
+                <StyledInput value={email} onChange={(e) => setEmail(e.target.value)}
+                        type="email" placeholder="Email" id="email" name="email" />
+            </FormDiv>
+            <FormDiv>
+                <StyledInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" id="password" name="password" />
+            </FormDiv>
+            <FormDiv>
+                <StyledButton onClick={login}>Log in</StyledButton>        
+            </FormDiv>
+            <FormDiv>
+                <Link to="/Register">
+                    <StyledButtonRegister>Don't have an account? Register here.</StyledButtonRegister>
+                </Link>
+            </FormDiv>
+            <FormDiv>{messages.map((message, index) => (
+                    <div key={index}>{message.message}</div>
+                ))}
+            </FormDiv>
+        </BusinessesBackground>
     )
 }
 

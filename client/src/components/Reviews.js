@@ -19,9 +19,10 @@ const Reviews = ({ name }) => {
     useEffect(() => {
 
         const getReviews = async() => {
+            console.log(name)
             let results = await axios.get(`/api/reviews/${name}`);
-            setReviews(results.data[0].reviews);
-            console.log(results.data[0].reviews)
+            setReviews(results.data);
+            console.log(results.data)
         }
         getReviews();
     }, [name])
@@ -29,7 +30,7 @@ const Reviews = ({ name }) => {
     return (
         <div style={{resize: 'both'}}>
             {reviews.map((review, index) => (
-                <ReviewsStyleDiv key={index}>{`${review[0]}`}<br></br><ReviewerDiv>{`-${review[1]}`}</ReviewerDiv></ReviewsStyleDiv>
+                <ReviewsStyleDiv key={index}>{`${review.review}`}<br></br><ReviewerDiv>{`-${review.reviewer}`}</ReviewerDiv></ReviewsStyleDiv>
             ))}
         </div>
     )

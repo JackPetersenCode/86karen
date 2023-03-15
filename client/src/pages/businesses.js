@@ -127,7 +127,7 @@ const Businesses = () => {
     useEffect(() => {
 
         const getBusiness = async() => {
-            let results = await axios.get(`/api/businesses/${name}`);
+            let results = await axios.get(`/api/business/${name}`);
             setBusiness(results.data[0]);
             console.log(results.data[0].address)
         }
@@ -165,7 +165,9 @@ const Businesses = () => {
                 <BottomPageWrapper>
                     <BusinessDescription>
                         <FromTheBusiness>About the Business</FromTheBusiness>
-                        <Description>Here's where the business owner can input a lengthy description</Description>
+                        <Description>
+                            {business.description}
+                        </Description>
                     </BusinessDescription>
                     <ReviewsWrapper>
                         <FromTheBusiness>Review Highlights</FromTheBusiness>

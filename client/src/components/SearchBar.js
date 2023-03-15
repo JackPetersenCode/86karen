@@ -17,14 +17,14 @@ const TextDiv = styled.div`
     padding-top: 20px;
 `
 
-const SearchBar = () => {
+const SearchBar = ({ selectedBusiness, setSelectedBusiness, reviewsList }) => {
 
     const [inputText, setInputText] = useState("");
     const [allBusinesses, setAllBusinesses] = useState([]);
 
     useEffect(() => {
         const getAll = async() => {
-            let results = await axios.get(`/api/searchAll`);
+            let results = await axios.get(`/api/business/searchAll`);
             console.log(results.data)
 
             setAllBusinesses(results.data);
@@ -63,7 +63,7 @@ const SearchBar = () => {
             }}
           />
         </TextDiv>
-        {allBusinesses.length > 0 && inputText.length > 0 ? <SearchList inputText={inputText} setInputText={setInputText} data={allBusinesses} onSearch={onSearch} /> : ''}
+        {allBusinesses.length > 0 && inputText.length > 0 ? <SearchList inputText={inputText} setInputText={setInputText} data={allBusinesses} onSearch={onSearch} reviewsList={reviewsList} /> : ''}
       </ContainerDiv>
     );
 }
