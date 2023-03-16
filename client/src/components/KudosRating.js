@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import kudos from "../apis/kudos.js";
 
 const KudosRating = ({ name }) => {
 
@@ -9,7 +9,7 @@ const KudosRating = ({ name }) => {
     useEffect(() => {
 
         const getCount = async() => {
-            let results = await axios.get(`/api/reviews/count/${name}`);
+            let results = await kudos.get(`/api/reviews/count/${name}`);
             setCount(results.data[0].count);
             console.log(results.data)
         }
@@ -17,9 +17,9 @@ const KudosRating = ({ name }) => {
     }, [name])
 
     return (
-        <>
+        <p data-testid={"review-count"}>
             {`${count} reviews`}
-        </>
+        </p>
     )
 }
 

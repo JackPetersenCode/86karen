@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import kudos from "../apis/kudos.js";
 
 const UploadImage = ({ images, setImages, name }) => {
 
@@ -17,7 +17,7 @@ const UploadImage = ({ images, setImages, name }) => {
         };
         const url = `/api/business/image`;
 
-        axios.post(url, formData, config)
+        kudos.post(url, formData, config)
             .then((response) => {
                 alert('Image Uploaded Successfully!');
             })

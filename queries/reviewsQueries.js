@@ -26,7 +26,19 @@ const getCount = (request, response, next) => {
     })
 }
 
+const createReview = (request, response, next) => {
+    const body = request.body;
+    console.log(body)
+    db.query(`INSERT INTO reviews (name, review, reviewer) VALUES ($1, $2, $3)`, [body.name, body.review, body.reviewer], (error, results) => {
+        if (error) {
+            return next(error);
+        }
+        response.status(201).send(body);
+    })
+}
+
 module.exports = {
     getReviews,
     getCount,
+    createReview,
 }

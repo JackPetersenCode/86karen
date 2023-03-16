@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import kudos from "../apis/kudos";
 
 const ReviewsStyleDiv = styled.div`
     font-size: medium;
@@ -20,7 +20,7 @@ const Reviews = ({ name }) => {
 
         const getReviews = async() => {
             console.log(name)
-            let results = await axios.get(`/api/reviews/${name}`);
+            let results = await kudos.get(`/api/reviews/${name}`);
             setReviews(results.data);
             console.log(results.data)
         }

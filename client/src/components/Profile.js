@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../pages/NavBar";
-import axios from "axios";
+import kudos from "../apis/kudos.js";
 import Reviews from "./Reviews";
 import Login from "./Login";
 import KudosRating from "./KudosRating";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const TextContainerDiv = styled.div`
     text-align: left;
@@ -111,8 +113,10 @@ const LogoutButton = styled.button`
 
 const Profile = ({ profile, setProfile }) => {
 
+    const navigate = useNavigate();
+
     const handleLogout = async() => {
-        axios.post('/api/users/logout')
+        kudos.post('/api/users/logout')
             .then((respones) => {
                 console.log('logged out!')
                 setProfile('');
@@ -127,7 +131,7 @@ const Profile = ({ profile, setProfile }) => {
     useEffect(() => {
         
         const getBusinessesFromEmail = async() => {
-            let results = await axios.get(`/api/business/email/${profile.email}`);
+            let results = await kudos.get(`/api/business/email/${profile.email}`);
             setOwnedBusinesses(results.data);
             console.log(results.data)
         }
@@ -179,7 +183,7 @@ const Profile = ({ profile, setProfile }) => {
                 ))}
                 </div>
             </BusinessesBackground>
-            : <Login profile={profile} setProfile={setProfile} /> }
+            : <Login profile={profile} setProfile={setProfile} navigate={navigate} /> }
         </>
     )
 }

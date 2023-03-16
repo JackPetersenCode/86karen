@@ -33,7 +33,7 @@
     "pg-pool": "^3.5.2",
     "react-background-slideshow": "^1.0.4",
     "react-geocode": "^0.2.3",
-    "react-router-dom": "^6.8.1",
+    "react-router-dom": "^6.9.0",
     "react-select": "^5.7.0",
     "react-slideshow-image": "^4.2.1",
     "styled-components": "^5.3.6",

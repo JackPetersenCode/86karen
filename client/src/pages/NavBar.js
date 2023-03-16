@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import '../App.css';
 import SearchBar from "../components/SearchBar";
@@ -13,6 +13,9 @@ import MinorCrashIcon from '@mui/icons-material/MinorCrash';
 import PianoIcon from '@mui/icons-material/Piano';
 import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SearchList from "../components/SearchList";
+import kudos from "../apis/kudos.js";
+
 
 const NavContainer = styled.nav`
     display: grid;
@@ -52,14 +55,15 @@ const DropDownContent = styled.div`
     min-width: 150px;
     text-decoration: none;
     color: black;
+    box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
+    0 0 10px rgba(48, 48, 48);
   `
 
-  const GridLink = styled.div`
-  padding: 10px;
-  display: flex;
-  alignItems: center;
-  flexWrap: wrap;
-  
+const GridLink = styled.div`
+    padding: 10px;
+    display: flex;
+    alignItems: center;
+    flexWrap: wrap;
 `
 
 const FirstNavLink = styled.div`
@@ -143,7 +147,13 @@ const FourthNavLink = styled.div`
       border-bottom: solid;
       border-color: red;
     }
-  `
+`
+const DropdownStyle = styled.div`
+    position: absolute;
+`
+const SearchContainer = styled.div`
+    
+`
 
 const StyledBurger = styled(LunchDiningIcon)({
   paddingRight: '10px'
@@ -180,6 +190,25 @@ const StyledDance = styled(SportsGymnasticsIcon)({
 let restaurantLink = 'restaurant';
 function Navbar() {
 
+    const [inputText, setInputText] = useState("");
+
+    const [allBusinesses, setAllBusinesses] = useState([]);
+
+    useEffect(() => {
+        const getAll = async() => {
+            let results = await kudos.get(`/api/business/searchAll`);
+            console.log(results.data)
+
+            setAllBusinesses(results.data);
+        }
+        getAll()
+    }, [])
+
+    const onSearch = (name) => {
+        setInputText(name);
+        console.log(`heres the thing you searched for: ${name}`);
+    }
+
     return (
     <div>
       <NavContainer>
@@ -188,7 +217,16 @@ function Navbar() {
               <div id="headtag"><img src="/kudos.png" alt="Home"/></div>
           </Link>
         </LogoNavLink>
-          <SearchBar />
+        <SearchContainer>
+          <SearchBar inputText={inputText} setInputText={setInputText} />
+          <DropdownStyle>
+          {allBusinesses.length > 0 && inputText.length > 0 ?
+            <SearchList inputText={inputText} setInputText={setInputText} data={allBusinesses} onSearch={onSearch} /> 
+            : 
+          ''}
+          </DropdownStyle>
+        </SearchContainer>
+
         <TopNavLinks>
           <Link to="/AddBusiness" className="Link" >For Business</Link>
         </TopNavLinks>

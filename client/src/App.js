@@ -27,7 +27,7 @@ function App() {
             <Route path="Profile" element={<Profile profile={profile} setProfile={setProfile} />} />
             <Route path="Register" element={<Register profile={profile} setProfile={setProfile} />} />
             <Route path="Login" element={<Login profile={profile} setProfile={setProfile} />} />
-            <Route path="ReviewsPage" element={<ReviewsPage />} />
+            <Route path="ReviewsPage" element={<ReviewsPage profile={profile} />} />
           </Route>
         </Routes>
       </BrowserRouter>

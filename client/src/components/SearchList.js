@@ -1,18 +1,21 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Select from 'react-select';
 
 const DropdownStyle = styled.div`
     background-color: white;
     display: flex;
     flex-direction: column;
-    border-radius: 3px;
+    padding: 10px;
+    text-align: left;
+    min-width: 230px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 20;
 `
 
 const DropdownRowStyle = styled.div`
     cursor: pointer;
-    textAlign: start;
     margin: 2px 0;
     padding-left: 3px;
     padding-right: 3px;
@@ -20,16 +23,41 @@ const DropdownRowStyle = styled.div`
 const StyledDiv = styled.div`
     background-color: white;
     padding: 10px;
+    text-align: left;
+    min-width: 230px;
+    border-radius: 5px;
+    z-index: 20;
+
     
 `
 const StyledOption = styled.div`
 
 `
  
-function SearchList({ inputText, data, reviewsList }) {
+function SearchList({ inputText, setInputText, data, reviewsList, selectedBusiness, setSelectedBusiness }) {
     //create a new array by filtering the original array
     
-    const [selectedBusiness, setSelectedBusiness] = useState('');
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            /**
+             * Alert if clicked on outside of element
+             */
+            function handleClickOutside(event) {
+              if (ref.current && !ref.current.contains(event.target)) {
+                    setInputText('');
+              }
+            }
+            // Bind the event listener
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+              // Unbind the event listener on clean up
+              document.removeEventListener("mousedown", handleClickOutside);
+            };
+          }, [ref]);
+    }
+
+    const refOne = useRef(null);
+    useOutsideAlerter(refOne)
 
     const filteredData = data.filter((element) => {
         //if no input the return the original
@@ -40,17 +68,18 @@ function SearchList({ inputText, data, reviewsList }) {
 
     function handleList(name) {
         setSelectedBusiness(name);
+        setInputText('');
         console.log(name)
     }
 
 
     return (
-      <>
+      <div ref={refOne} >
       { !reviewsList ?
 
       <DropdownStyle>
         {filteredData.map((item, index) => (
-        <Link key={index} to={`/${item.name}`}><DropdownRowStyle>{item.name}</DropdownRowStyle></Link>
+        <Link key={index} to={`/${item.name}`} style={{textDecoration: 'none'}}><DropdownRowStyle>{item.name}</DropdownRowStyle></Link>
         ))}
       </DropdownStyle>
       
@@ -62,7 +91,7 @@ function SearchList({ inputText, data, reviewsList }) {
         ))}
       </StyledDiv>
       }
-      </>
+      </div>
     )
 }
 

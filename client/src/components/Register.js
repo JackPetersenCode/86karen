@@ -1,7 +1,39 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import kudos from "../apis/kudos.js";
+import { Form, Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Navbar from "../pages/NavBar";
+
+const BusinessesBackground = styled.div`
+    background-image: linear-gradient(180deg, black, white);
+    width: 100%;
+`
+const FormDiv = styled.div`
+    text-align: center;
+    margin: 20px;
+`
+const Flower = styled.img`
+    width: 75px;
+    height: 75px;
+`
+const StyledInput = styled.input`
+    width: 400px;
+    padding: 15px;
+    font-size: large;
+    border-radius: 10px;
+    border-width: 5px;
+`
+const StyledButton = styled.button`
+    width: 440px;
+    padding: 15px;
+    font-size: large;
+    border-radius: 10px;
+    border-width: 5px;
+    color: white;
+    border-color: rgb(48, 48, 48);
+    background-color: rgb(48, 48, 48);
+`
 
 const Register = ({ profile, setProfile }) => {
 
@@ -14,7 +46,7 @@ const Register = ({ profile, setProfile }) => {
 
     const register = async() => {
         console.log(name);
-        let results = await axios.post(`/api/users/register`, {
+        let results = await kudos.post(`/api/users/register`, {
                                                                 name: name,
                                                                 email: email,
                                                                 password: password,
@@ -34,31 +66,39 @@ const Register = ({ profile, setProfile }) => {
     }
 
     return (
-        <>
+        <BusinessesBackground>
+            <Navbar />
             <div>
-            <label htmlFor="name">username</label>
-                <input value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="username" id="name" name="name" />
-                <br></br>
-                <label htmlFor="email">email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)}
+                <FormDiv>
+                    <Flower src="/flower2.png" />
+                </FormDiv>
+                <FormDiv>
+                    <StyledInput value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="username" id="name" name="name" />
+                </FormDiv>
+                <FormDiv>
+                    <StyledInput value={email} onChange={(e) => setEmail(e.target.value)}
                         type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-                <br></br>
-                <label htmlFor="password">password</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <br></br>
-                <label htmlFor="password2">re-enter password</label>
-                <input value={password2} onChange={(e) => setPassword2(e.target.value)} type="password" placeholder="********" id="password2" name="password2" />
-                <br></br>
-                <button onClick={register}>Register</button>    
-                <Link to="/Login">
-            <       button>Registered already? Log in.</button>
-                </Link>    
+                </FormDiv>
+                <FormDiv>
+                    <StyledInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
+                </FormDiv>
+                <FormDiv>
+                    <StyledInput value={password2} onChange={(e) => setPassword2(e.target.value)} type="password" placeholder="********" id="password2" name="password2" />
+                </FormDiv>
+                <FormDiv>
+                    <StyledButton onClick={register}>Register</StyledButton>    
+                </FormDiv>
+                <FormDiv>
+                    <Link to="/Login">
+                        <StyledButton>Registered already? Log in.</StyledButton>
+                    </Link>    
+                </FormDiv>
             </div>
             <div>{messages.map((message, index) => (
                 <div key={index}>{message.message}</div>
             ))}
             </div>
-        </>
+        </BusinessesBackground>
     )
 }
 

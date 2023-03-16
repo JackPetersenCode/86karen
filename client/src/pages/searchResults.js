@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
 import styled from "styled-components";
-import axios from "axios";
 import Reviews from "../components/Reviews";
 import { useParams, Link } from 'react-router-dom';
 import KudosRating from "../components/KudosRating";
+import kudos from "../apis/kudos";
 
 const TextContainerDiv = styled.div`
     text-align: left;
@@ -98,7 +98,7 @@ const SearchResults = () => {
     useEffect(() => {
         const getAll = async() => {
             console.log(input)
-            let results = await axios.get(`/api/business/getAllLike/${input.toLowerCase()}`);
+            let results = await kudos.get(`/api/business/getAllLike/${input.toLowerCase()}`);
             console.log(results.data)
 
             setData(results.data);

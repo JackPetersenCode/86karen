@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
-import axios from "axios";
-import UploadImage from "../components/UploadImage";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import kudos from "../apis/kudos";
 
 const FormDiv = styled.div`
     text-align: center;
@@ -34,11 +33,14 @@ const StyledH1 = styled.h1`
 `
 const CreatePageButton = styled.button`
     margin-top: 20px;
-    font-size: x-large;
+    margin-bottom: 50px;
+    background-color: red;
     padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(48, 48, 48), 0 0 10px rgba(48, 48, 48),
-    0 0 10px rgba(48, 48, 48);
+    border: none;
+    color: white;
 `
 const ButtonDiv = styled.div`
 
@@ -67,13 +69,13 @@ const AddBusiness = ({ profile }) => {
         };
         const url = `/api/business/image`;
 
-        axios.post(url, formData, config)
+        kudos.post(url, formData, config)
             .then((response) => {
                 alert('Image Uploaded Successfully!');
                 console.log(images);
                 let databaseImages = images.map((image) => '/' + image.name)
                 console.log(databaseImages)
-                axios.post(`/api/business`, { name: name,
+                kudos.post(`/api/business`, { name: name,
                                                 description: description,
                                                 tags: tags,
                                                 images: databaseImages,

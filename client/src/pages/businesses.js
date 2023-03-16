@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 import styled from "styled-components";
 import Reviews from "../components/Reviews";
-import axios from "axios";
+import kudos from "../apis/kudos.js";
 import KudosRating from "../components/KudosRating";
 import GoogleMap from "../components/GoogleMap";
 
@@ -127,7 +127,7 @@ const Businesses = () => {
     useEffect(() => {
 
         const getBusiness = async() => {
-            let results = await axios.get(`/api/business/${name}`);
+            let results = await kudos.get(`/api/business/${name}`);
             setBusiness(results.data[0]);
             console.log(results.data[0].address)
         }

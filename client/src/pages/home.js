@@ -27,9 +27,7 @@ const TextDiv = styled.div`
     text-shadow: 0 0 0.2em #87F, 0 0 0.2em black,
         0 0 0.2em black; 
 `
-console.log(process.env.REACT_APP_GOOGLE_API_KEY)
-console.log(process.env.DB_HOST)
-console.log(process.env.NODE_ENV)
+
 const Home = () => {
     
     return (

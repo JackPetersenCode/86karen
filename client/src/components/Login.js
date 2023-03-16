@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
-import Axios from "axios";
+import kudos from "../apis/kudos.js";
 import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -47,15 +46,14 @@ const StyledButtonRegister = styled.button`
 
 `
 
-const Login = ({ profile, setProfile }) => {
+const Login = ({ profile, setProfile, navigate }) => {
 
-    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [messages, setMessages] = useState([]);
 
     const login = async() => {
-        let results = await axios.post(`/api/users/login`, {
+        let results = await kudos.post(`/api/users/login`, {
                                                                 email: email,
                                                                 password: password,
                                                             })
@@ -68,6 +66,7 @@ const Login = ({ profile, setProfile }) => {
         } else {
             console.log('yayaya');
             //setLoginStatus(true);
+            console.log(results.data)
             setProfile(results.data)
             navigate('/');
         }                                                        

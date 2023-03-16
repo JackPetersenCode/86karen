@@ -6,4 +6,6 @@ router.get('/:name', reviewsQueries.getReviews);
 
 router.get('/count/:name', reviewsQueries.getCount);
 
+router.post('/', reviewsQueries.createReview);
+
 module.exports = router;
